@@ -18,3 +18,4 @@ sqlparse
 typing_extensions
 tzdata
 urllib3
+gunicorn
