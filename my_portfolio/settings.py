@@ -1,5 +1,6 @@
 import os
 from decouple import config
+import dj_database_url
 
 
 DEBUG = True
@@ -13,16 +14,16 @@ USE_I18N = True
 USE_L10N = True
 
 DATABASES = {
-	'default': {
-        'ENGINE': 'django.db.backends.postgresql',
-        'NAME': config('NAME'), 
-        'USER': config('USER'), 
-        'PASSWORD': config('PASSWORD'),
-        'HOST': '127.0.0.1', 
-        'PORT': '5432',
-    }
+	'default': dj_database_url.parse(config('DATABASE_URL'))
 }
-
+    #  {
+    #     'ENGINE': 'django.db.backends.postgresql',
+    #     'NAME': config('NAME'), 
+    #     'USER': config('USER'), 
+    #     'PASSWORD': config('PASSWORD'),
+    #     'HOST': '127.0.0.1', 
+    #     'PORT': '5432',
+	# }
 TEMPLATES = [
 	{
 		'BACKEND': 'django.template.backends.django.DjangoTemplates',
@@ -44,6 +45,7 @@ TIME_ZONE = 'UTC'
 MIDDLEWARE = [
 	'django.middleware.security.SecurityMiddleware',
 	'django.contrib.sessions.middleware.SessionMiddleware',
+ 	"whitenoise.middleware.WhiteNoiseMiddleware",
 	'corsheaders.middleware.CorsMiddleware',
 	'django.middleware.common.CommonMiddleware',
 	'django.middleware.csrf.CsrfViewMiddleware',
@@ -121,8 +123,8 @@ CLOUDINARY_STORAGE = {
 	'CLOUD_NAME': config('CLOUD_NAME'),
 }
 
-
+DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 
 DEFAULT_FILE_STORAGE = 'cloudinary_storage.storage.MediaCloudinaryStorage'
 
-
+STATICFILES_STORAGE = "whitenoise.storage.CompressedManifestStaticFilesStorage"

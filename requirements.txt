@@ -2,11 +2,13 @@ asgiref
 certifi
 charset-normalizer
 cloudinary
+dj-database-url
 Django
 django-cloudinary-storage
 django-cors-headers
 django-rest-framework
 djangorestframework
+gunicorn
 idna
 Pillow
 psycopg2-binary
@@ -18,4 +20,4 @@ sqlparse
 typing_extensions
 tzdata
 urllib3
-gunicorn
+whitenoise
